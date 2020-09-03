@@ -8,23 +8,34 @@
 </head>
 <body>
     <div class="main">
-        <h1>Generador de imágenes duotono</h1>
+        
         <div id="app">
-           
-            <h3>Elige un color:</h3>
-            <input type="color" v-model="hex" value="#ccc" id="inputcolor"/>
-            <h3>Selecciona una imagen:</h3>
-            <input type="file" @change="onFileChange" value="image" id="inputfile"/>
-            <label for="inputfile">Examinar</label>
-            <div>
-                <div class="container" v-if="image">
-                    <img :src="image" alt="">
-                    <div class="content" id="content" :style="{backgroundColor: (hex ||'000')}"></div>
+            <h1>Duotone Generator</h1>
+                
+                    <div class="image-container">
+                        <img :src="image" alt="">
+                        <div class="content" id="content" :style="{backgroundColor: (hex ||'000')}"></div>
+                    </div>
+                
+                <div class="app-container">
+                <div class="buttons">
+                    <button @click="removeImage" v-if="image"><img src="delete.svg" alt="Delete photo"></button>
+                    <a :href="image" v-if="image" download><img src="save.svg" alt="Save"></a>
+                </div>
+                <div class="main-menu">
+                    <div class="main-menu-buttons main-menu-buttons-picker">
+                        <input type="color" v-model="hex" value="#ccc" id="inputcolor" />
+                        <h3>Pick color</h3>
+                    </div>
+                    <div class="main-menu-buttons">
+                        <input type="file" @change="onFileChange" value="image" id="inputfile" />
+                        <label for="inputfile"><img src="add_photo.svg" alt="Add photo"></label>
+                        <h3>Add photo</h3>
+                    </div>
                 </div>
             </div>
-            <div class="buttons">
-                <button @click="removeImage" v-if="image">Eliminar</button>
-                <a :href="image" v-if="image" download>Guardar</a>
+    
+                
             </div>
         </div>
     </div>
